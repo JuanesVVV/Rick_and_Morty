@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rick and Morty App</title>
 </head>
 <body>
-    <nav>
-        <button onclick="home()">Home</button>
-        <button onclick="informativa()">Informativa</button>
-        <button onclick="favoritos()">Favoritos</button>
-        <button onclick="original()">Original</button>
-        <button onclick="rickandmorty()">Rick and Morty</button>
-        <button onclick="conexion()">Conexion</button>
-    </nav>
+  <nav>
+    <button onclick="Home()">Inicio</button>
+    <button onclick="Informativa()">¿Qué es esto?</button>
+    <button onclick="Favoritos()">Favoritos</button>
+    <button onclick="Capturados()">Capturados</button>
+  </nav>
 
-    <div id="root">
-        <!--aqui se agrega lo que hagamos en js-->>
-    </div>
-    
-    <script src="JS/conexion.js"></script>
-    <script src="JS/home.js"></script>
-    <script src="JS/original.js"></script>
-    <script src="JS/favoritos.js"></script>
-    <script src="JS/favoritos.js"></script>
-    <script src="JS/rickandmorty.js"></script>
-    
+  <div id="root"></div>
+
+  <!-- Módulos JS -->
+  <script src="JS/conexion.js"></script>
+  <script src="JS/home.js"></script>
+  <script src="JS/favoritos.js"></script>
+  <script src="JS/informativa.js"></script>
+  <script src="JS/original.js"></script>
+  <script src="JS/rickandmorty.js"></script>
 </body>
 </html>

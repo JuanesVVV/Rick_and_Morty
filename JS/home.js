@@ -1,63 +1,37 @@
-function GenerarLista(arrayPersonajes) {
+function GenerarLista(arraypersonajes) {
   let lista = "";
-
-  for (let i = 0; i < arrayPersonajes.length; i++) {
-    const personaje = arrayPersonajes[i];
+  for (let i = 0; i < arraypersonajes.length; i++) {
+    let p = arraypersonajes[i];
     lista += `
-      <div class="c-lista-personaje" onclick="Detalle('${personaje.id}')">
-        <p>#${personaje.id}</p>
-        <img src="${personaje.image}" width="auto" height="100" loading="lazy" alt="${personaje.name}">
-        <p>${personaje.name}</p>
+      <div class="c-lista-personaje personaje-${p.id}" onclick="Detalle('${p.id}')">
+        <p>#${p.id}</p>
+        <img src="${p.image}" width="auto" height="60" loading="lazy" alt="${p.name}">
+        <p>${p.name}</p>
       </div>`;
   }
-
   return lista;
 }
+
 function buscadorfuncion(valor) {
-  if (valor.length >= 3) {
-    const filtrados = personajes.filter(p => p.name.toLowerCase().includes(valor.toLowerCase()));
-    const listaHTML = GenerarLista(filtrados);
-    document.getElementById("la-lista").innerHTML = listaHTML;
-  } else {
-    const listaHTML = GenerarLista(personajes);
-    document.getElementById("la-lista").innerHTML = listaHTML;
-  }
+  const filtrados = valor.length >= 3
+    ? personajes.filter(p => p.name.toLowerCase().includes(valor.toLowerCase()))
+    : personajes;
+  document.getElementById("la-lista").innerHTML = GenerarLista(filtrados);
 }
+
 function Home() {
   const root = document.getElementById("root");
   root.innerHTML = "";
 
-  // Buscador
   const buscador = document.createElement("input");
-  buscador.classList.add("c-buscador");
   buscador.type = "text";
   buscador.placeholder = "Buscar personaje";
-  buscador.addEventListener("input", () => {
-    buscadorfuncion(buscador.value);
-  });
+  buscador.addEventListener("input", () => buscadorfuncion(buscador.value));
 
-  // Filtros por especie
-  const especies = ["Human", "Alien", "Robot", "Animal", "Mythological Creature", "Unknown"];
-  const contenedorFiltro = document.createElement("div");
-  contenedorFiltro.classList.add("c-filtros");
-
-  especies.forEach(especie => {
-    const btn = document.createElement("button");
-    btn.textContent = especie;
-    btn.addEventListener("click", () => {
-      FiltroConexion(especie);
-    });
-    contenedorFiltro.appendChild(btn);
-  });
-
-  // Lista
   const contenedorLista = document.createElement("section");
-  contenedorLista.classList.add("c-lista");
   contenedorLista.id = "la-lista";
   contenedorLista.innerHTML = GenerarLista(personajes);
 
-  // Agregar al DOM
   root.appendChild(buscador);
-  root.appendChild(contenedorFiltro);
   root.appendChild(contenedorLista);
 }
