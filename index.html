@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rick and Morty App</title>
+  <title>Rick and Morty Explorer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav>
     <button onclick="Home()">Inicio</button>
-    <button onclick="Informativa()">¿Qué es esto?</button>
+    <button onclick="renderInformativa()">¿Qué es esto?</button>
     <button onclick="Favoritos()">Favoritos</button>
-    <button onclick="Capturados()">Capturados</button>
+    <button onclick="Capturados()">Gacha</button>
   </nav>
 
   <div id="root"></div>
 
-  <!-- Módulos JS -->
   <script src="JS/conexion.js"></script>
   <script src="JS/home.js"></script>
   <script src="JS/favoritos.js"></script>
   <script src="JS/informativa.js"></script>
   <script src="JS/original.js"></script>
-  <script src="JS/rickandmorty.js"></script>
+  <script src="JS/detalle.js"></script>
+  <script src="JS/general.js"></script>
 </body>
 </html>
