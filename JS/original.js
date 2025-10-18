@@ -8,6 +8,32 @@ async function Detalle(id) {
     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
     const data = await res.json();
 
+    // Traducciones
+    const estadoTraducido = {
+      Alive: "Vivo",
+      Dead: "Muerto",
+      unknown: "Desconocido"
+    }[data.status] || data.status;
+
+    const generoTraducido = {
+      Male: "Masculino",
+      Female: "Femenino",
+      Genderless: "Sin género",
+      unknown: "Desconocido"
+    }[data.gender] || data.gender;
+
+    const especieTraducida = {
+      Human: "Humano",
+      Alien: "Alienígena",
+      Robot: "Robot",
+      Animal: "Animal",
+      "Mythological Creature": "Criatura mitológica",
+      Disease: "Enfermedad",
+      Poopybutthole: "Poopybutthole",
+      Cronenberg: "Cronenberg",
+      unknown: "Desconocida"
+    }[data.species] || data.species;
+
     const favoritos = JSON.parse(localStorage.getItem("favoritosRM")) || [];
     esFavorito = favoritos.some(p => p.id === data.id);
 
@@ -15,9 +41,9 @@ async function Detalle(id) {
       <section class="c-detalle">
         <img src="${data.image}" alt="${data.name}" height="120" width="auto">
         <h2>${data.name} (#${data.id})</h2>
-        <p><strong>Estado:</strong> ${data.status}</p>
-        <p><strong>Especie:</strong> ${data.species}</p>
-        <p><strong>Género:</strong> ${data.gender}</p>
+        <p><strong>Estado:</strong> ${estadoTraducido}</p>
+        <p><strong>Especie:</strong> ${especieTraducida}</p>
+        <p><strong>Género:</strong> ${generoTraducido}</p>
         <p><strong>Origen:</strong> ${data.origin.name}</p>
         <ul style="list-style: none; padding-left: 0;">
           <li>Tipo: ${data.type || "Desconocido"}</li>

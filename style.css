@@ -1,35 +1,185 @@
+/* === GLOBAL === */
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(to bottom, #0b0c1e, #1f1f2e);
+  color: #00ffcc;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  color: #00ffcc;
+  text-shadow: 0 0 6px #00ffcc;
+}
+
+/* === NAVBAR === */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #121826;
+  padding: 1rem;
+  box-shadow: 0 2px 10px #00ff99;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav button {
+  background: linear-gradient(to right, #00ff99, #00ccff);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  color: #0b0c1e;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+nav button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* === INFORMATIVA === */
 .c-informativa {
   padding: 2rem;
   background-color: #1e1e2f;
-  color: #00ff99;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  max-width: 800px;
-  margin: auto;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 0 20px #00ff99;
 }
 
 .c-informativa h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
-  color: #00ffcc;
-  text-shadow: 0 0 5px #00ffcc;
 }
 
 .informativa-img {
   width: 100%;
   max-width: 500px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 1rem auto;
-  box-shadow: 0 0 15px #00ff99;
+  box-shadow: 0 0 20px #00ff99;
 }
 
-.c-informativa ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
+/* === LISTA Y DETALLE === */
+.c-lista-personaje,
+.c-unpersonaje,
+.c-detalle {
+  background-color: #2c2f45;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem;
+  text-align: center;
+  color: #ecf0f1;
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.c-informativa li {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+/* Portal animado para .c-detalle */
+.c-detalle::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #00ff99 10%, #006644 60%, #000000 100%);
+  animation: portalSpin 8s linear infinite;
+  z-index: 0;
+  opacity: 0.3;
+  transform-origin: center;
+  border-radius: 50%;
+}
+
+@keyframes portalSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.c-detalle > * {
+  position: relative;
+  z-index: 2;
+}
+
+.c-lista-personaje:hover,
+.c-unpersonaje:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* Imagen circular en detalle */
+.c-detalle img {
+  border-radius: 50%;
+  border: 3px solid #00ff99;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botones en detalle */
+.c-detalle button {
+  margin: 1rem 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #00cc99;
+  border: none;
+  border-radius: 6px;
+  color: #0b0c1e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.c-detalle button:hover {
+  background-color: #00ffcc;
+}
+
+/* Ícono de favorito */
+[id^="corazon-"] {
+  font-size: 1.2rem;
+  margin-right: 0.3rem;
+}
+
+/* === INPUT === */
+input[type="text"] {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 2px solid #00ffcc;
+  background-color: #1f1f2e;
+  color: #fff;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 5px #00ffcc;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .c-lista-personaje,
+  .c-unpersonaje,
+  .c-detalle {
+    margin: 1rem auto;
+    width: 90%;
+  }
+
+  .informativa-img {
+    max-width: 90%;
+  }
 }

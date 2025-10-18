@@ -1,15 +1,18 @@
-let personajes = [];
-let totalPersonajes = 826; // según la API
-
 async function Conexion() {
-  try {
-    const res = await fetch(`https://rickandmortyapi.com/api/character?page=1`);
+  personajes = [];
+  let pagina = 1;
+  let siguiente = true;
+
+  while (siguiente) {
+    const res = await fetch(`https://rickandmortyapi.com/api/character?page=${pagina}`);
     const data = await res.json();
-    personajes = data.results;
-  } catch (error) {
-    console.error("Error en la conexión:", error);
-    personajes = [];
+
+    personajes = personajes.concat(data.results);
+    pagina++;
+    siguiente = data.info.next !== null;
   }
+
+  totalPersonajes = personajes.length;
 }
 
 async function General() {
@@ -17,4 +20,4 @@ async function General() {
   Home();
 }
 
-General(); // Mostrar personajes desde el inicio
+General();
